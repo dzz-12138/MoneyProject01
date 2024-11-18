@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
 * @author dzz
@@ -33,4 +34,13 @@ public interface StockMarketIndexInfoMapper {
     *
     */
     List<InnerMarketDomain> getMarketInfo(@Param("curDate") Date curDate, @Param("mCodes") List<String> mCodes);
+
+    /**
+     * 统计指定日期范围内大盘每分钟的成交量流水线信息
+     * @param openDate 起始时间，一般指开盘时间
+     * @param endDate 截止时间，一般与openDate同一天
+     * @param marketCodes 大盘编码集合
+     * @return
+     */
+    List<Map> getSumAmtInfo(@Param("openDate") Date openDate, @Param("endDate") Date endDate, @Param("marketCodes") List<String> marketCodes);
 }
